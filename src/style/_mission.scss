@@ -1,0 +1,163 @@
+.plaquette {
+  background: linear-gradient(to top left, #292424, #0d0b0c);
+  padding: 3rem 1rem;
+  color: #fff;
+  font-family: "Arial", sans-serif;
+
+  &-title {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 4rem;
+    color: #e63946;
+    text-transform: uppercase;
+    border-bottom: 2px solid #e63946;
+    padding-bottom: 1rem;
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  &-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    cursor: pointer;
+    background: #1a1a1a;
+    transition: transform 0.4s ease;
+
+    // Largeur et hauteur différentes par classe
+    &.small {
+      grid-column: span 1;
+      grid-row: span 1;
+      height: 140px;
+    }
+
+    &.medium {
+      grid-column: span 2;
+      grid-row: span 2;
+      height: 280px;
+    }
+
+    &.large {
+      grid-column: span 3;
+      grid-row: span 2;
+      height: 280px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: transform 0.5s ease, filter 0.5s ease;
+      display: block;
+      filter: brightness(0.9);
+    }
+
+    // Déplacement gauche/droite sur hover
+    &.translate-right:hover img {
+      transform: translateX(10px) scale(0.95);
+      filter: brightness(0.7);
+    }
+
+    &.translate-left:hover img {
+      transform: translateX(-10px) scale(0.95);
+      filter: brightness(0.7);
+    }
+
+    // Zoom général au hover sur le container
+    &:hover {
+      transform: scale(1.03);
+    }
+
+    // Overlay titre centré
+    .plaquette-title-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #e63946;
+      font-size: 1.4rem;
+      font-weight: bold;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      user-select: none;
+    }
+
+    &:hover .plaquette-title-overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+/* Modale : fond noir transparent, centré, animation fadeIn */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInModal 0.3s ease forwards;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 25px rgba(230, 57, 70, 0.7);
+  position: relative;
+  animation: slideUpModal 0.3s ease forwards;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #e63946;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+/* Animations modale */
+@keyframes fadeInModal {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+  to {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+@keyframes slideUpModal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../style/index.scss";
 
-const items = ["Accueil", "Qui sommes-nous", "Notre mission", "Contactez-nous"];
+const items = ["Accueil", "Notre mission", "Qui sommes-nous",  "Contactez-nous"];
 
 const Navbar: React.FC = () => {
   const [active, setActive] = useState("Accueil");

@@ -1,0 +1,32 @@
+.footer-container {
+  background-color: #222;
+  color: #eee;
+  padding: 1.5rem 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.footer-nav a {
+  color: #eee;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.footer-nav a:hover {
+  color: #e63946;
+  text-decoration: underline;
+}
+
+.footer-copy {
+  font-style: italic;
+  opacity: 0.7;
+}

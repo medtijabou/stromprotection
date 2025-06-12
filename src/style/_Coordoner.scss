@@ -1,0 +1,41 @@
+.coordinates-container {
+  border-top: 1px solid #ddd;
+  padding-top: 2rem;
+  text-align: center;
+  color:#ddd;
+background: linear-gradient(to top left, #292424, #0d0b0c);
+  margin: auto;
+  
+}
+
+.coordinates-container h3 {
+  margin-bottom: 1rem;
+}
+
+.coordinates-address {
+  font-style: normal;
+  line-height: 1.6;
+  margin-top: 1rem;
+}
+
+.coordinates-address p {
+padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.coordinates-icon {
+  color: #e63946;
+  min-width: 20px;
+}
+
+.coordinates-link {
+  color: #e63946;
+  text-decoration: none;
+}
+
+.coordinates-link:hover {
+  text-decoration: underline;
+}

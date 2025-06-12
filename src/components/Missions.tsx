@@ -1,39 +1,63 @@
-import React from 'react';
-import InfiniteMenu from './InfiniteMenu';
+import React, { useState } from "react";
+import { sections } from "./data";
 
-const items = [
-  {
-    image: 'https://picsum.photos/300/300?grayscale',
-    link: 'https://google.com/',
-    title: 'Agent de securité',
-    description: 'This is pretty cool, right?'
-  },
-  {
-    image: 'https://picsum.photos/400/400?grayscale',
-    link: 'https://google.com/',
-    title: 'Item 2',
-    description: 'This is pretty cool, right?'
-  },
-  {
-    image: 'https://picsum.photos/500/500?grayscale',
-    link: 'https://google.com/',
-    title: 'Item 3',
-    description: 'This is pretty cool, right?'
-  },
-  {
-    image: 'https://picsum.photos/600/600?grayscale',
-    link: 'https://google.com/',
-    title: 'Item 4',
-    description: 'This is pretty cool, right?'
-  }
-];
+const Plaquette: React.FC = () => {
+  const [modalData, setModalData] = useState<{ title: string; content: string } | null>(null);
 
-const MenuWrapper = () => {
+  // Ouvre modale avec contenu
+  const openModal = (title: string, content: string) => {
+    setModalData({ title, content });
+  };
+
+  // Ferme modale
+  const closeModal = () => {
+    setModalData(null);
+  };
+
+  const sizes = ["small", "medium", "large"];
+
   return (
-    <div style={{ height: '600px', position: 'relative' }}>
-      <InfiniteMenu items={items} />
-    </div>
+    <section className="plaquette">
+      <h1 className="plaquette-title">Présentation de Storm Protection</h1>
+      <div className="plaquette-grid">
+        {sections.map((section, index) => {
+          const sizeClass = sizes[index % sizes.length];
+          const translateClass = index % 2 === 0 ? "translate-right" : "translate-left";
+
+          return (
+            <div className={`plaquette-item ${sizeClass} ${translateClass}`} key={index}>
+              <img src={section.image} alt={section.title} />
+              <div
+                className="plaquette-title-overlay"
+                onClick={() => openModal(section.title, section.content)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === "Enter" && openModal(section.title, section.content)}
+              >
+                {section.title}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Modal */}
+      {modalData && (
+        <div className="modal-backdrop" onClick={closeModal}>
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()} // Empêche fermeture au clic dans la modale
+          >
+            <button className="modal-close" onClick={closeModal}>
+              &times;
+            </button>
+            <h2>{modalData.title}</h2>
+            <p>{modalData.content}</p>
+          </div>
+        </div>
+      )}
+    </section>
   );
 };
 
-export default MenuWrapper;
+export default Plaquette;
