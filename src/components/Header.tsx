@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../style/index.scss";
+
 
 const items = ["Accueil", "Notre mission", "Qui sommes-nous",  "Contactez-nous"];
 
@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
     <>
       <nav className="navbar">
         <img
-          src="./src/assets/image/logo/logo-strom.webp"
+          src="/public/assets/image/logo/logo-strom.webp"
           alt="Logo Strom Protection"
           className="navbar-logo"
         />

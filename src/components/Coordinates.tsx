@@ -21,6 +21,11 @@ export function Coordinates() {
           <a href="tel:+33614663128" className="coordinates-link">
             06 14 66 31 28
           </a>
+          <br />
+
+          <a href="tel:+33614808876" className="coordinates-link">
+           06 14 80 88 76
+          </a>
         </p>
         <p>
           <FaClock className="coordinates-icon" />

@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 
 const images = [
 
-  "/src/assets/image/slide/agentprivée.webp",
-  "/src/assets/image/slide/agentfiltrage.webp",
-  "/src/assets/image/slide/agent-cynophile.webp",
-  "/src/assets/image/slide/agentincendie.webp"
+  "/public/assets/image/slide/agentprivée.webp",
+  "/public/assets/image/slide/agentfiltrage.webp",
+  "/public/assets/image/slide/agent-cynophile.webp",
+  "/public/assets/image/slide/agentincendie.webp"
 ];
 
 const Banner = () => {

@@ -4,7 +4,7 @@ const presentation = {
   title: "QUI SOMME-NOUS ",
   content: `STORM PROTECTION est une société de sécurité privée créée par Monsieur AYNAOU AZIZ, diplômé du Centre de Formation MASTER INSTITUE (DIRIGEANT D’ENTREPRISE DE SÉCURITÉ PRIVÉE).
 Après de nombreuses années d’expérience dans la sécurité privée, cette société assure la protection des biens et des personnes dans tous types de missions.`,
-  image: "./src/assets/image/logo/logo-strom.webp",
+  image: "/public/assets/image/logo/logo-strom.webp",
 };
 
 export default function PresentationEntreprise() {
