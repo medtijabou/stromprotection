@@ -31,7 +31,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section style={{ maxWidth: 600, margin: "auto", padding: "2rem" }}>
+    <section id="contact" style={{ maxWidth: 600, margin: "auto", padding: "2rem" }}>
       <h2 style={{ textAlign: "center", marginBottom: "1.5rem" }}>Contactez-nous</h2>
       <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
         <input

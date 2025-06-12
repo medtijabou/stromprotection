@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 
 
 const images = [
-
-  "/public/assets/image/slide/agentprivée.webp",
-  "/public/assets/image/slide/agentfiltrage.webp",
-  "/public/assets/image/slide/agent-cynophile.webp",
-  "/public/assets/image/slide/agentincendie.webp"
+  
+  "/assets/image/slide/agentprivée.webp",
+  "/assets/image/slide/agentfiltrage.webp",
+  "/assets/image/slide/agent-cynophile.webp",
+  "/assets/image/slide/agentincendie.webp"
 ];
 
 const Banner = () => {
@@ -20,7 +20,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="banner">
+    <div id="accueil" className="banner">
       {images.map((img, idx) => (
         <img
           key={idx}
@@ -31,6 +31,7 @@ const Banner = () => {
       ))}
       <div className="banner-content">
         <h1>STORM PROTECTION</h1>
+        <p>GARDIENNAGE,SECURITE à Marseille et sur toute la région PACA. </p>
        
       </div>
     </div>

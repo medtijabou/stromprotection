@@ -18,8 +18,8 @@ export function Coordinates() {
 
         <p>
           <FaPhoneAlt className="coordinates-icon" />
-          <a href="tel:+33614663128" className="coordinates-link">
-            06 14 66 31 28
+          <a href="tel:+33780770419" className="coordinates-link">
+            07 80 77 04 19
           </a>
           <br />
 

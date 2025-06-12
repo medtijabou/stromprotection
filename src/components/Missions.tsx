@@ -17,8 +17,8 @@ const Plaquette: React.FC = () => {
   const sizes = ["small", "medium", "large"];
 
   return (
-    <section className="plaquette">
-      <h1 className="plaquette-title">Présentation de Storm Protection</h1>
+    <section id="mission" className="plaquette">
+      <h1 className="plaquette-title">Nos Services</h1>
       <div className="plaquette-grid">
     {sections.map((section, index) => {
   const sizeClass = sizes[index % sizes.length];

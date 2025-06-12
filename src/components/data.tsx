@@ -31,7 +31,7 @@ présentation d’un badge ou carte magnétique, la remise
 d’une pièce d’identité ou simplement la vérification du
 numéro d’immatriculation de la voiture dans le cas d’un
 parking.`,
- image: "./public/assets/image/mission/filtrage.jpg",
+ image: "./assets/image/mission/filtrage.jpg",
 
   },
   {
@@ -45,7 +45,7 @@ orienter le client Surveiller et sécuriser les
 installations Gérer les mouvements de foule, de
 panique ou tout autre conflit Apporter les
 premiers soins et gestes d’urgence.`,
-    image: "./public/assets/image/mission/ADSG.png",
+    image: "./assets/image/mission/ADSG.png",
   },
   {
     title: "Agent Cynophile",
@@ -63,7 +63,7 @@ exercer il doit répondre a des critères strictes avoir
 la carte professionnelle ,avoir un certificat de
 qualification professionnelle et avoir son propre
 chien dressé dans centre spécialisé.`,
-    image: "./public/assets/image/mission/cynophile.png",
+    image: "./assets/image/mission/cynophile.png",
   },
   {
     title: "Agent de Sécurité Incendie",
@@ -79,14 +79,14 @@ employés en matière de sécurité contre l’incendie L’entretien
 élémentaire des moyens concourant à la sécurité incendie
 L’alerte et l’accueil des secours L’évacuation du public
 L’intervention précoce face aux incendies.`,
-    image: "./public/assets/image/mission/ssiap.png",
+    image: "./assets/image/mission/ssiap.png",
   },
   {
     title: "Nos Services de Sécurité Privée",
     content: `Notre société de sécurité privée s’engage à protéger vos biens, vos locaux et vos personnes avec professionnalisme et réactivité. Nous proposons des services personnalisés adaptés à chaque client, allant de la surveillance humaine, la télésurveillance, aux interventions rapides en cas d’incident. Grâce à nos agents qualifiés et formés, nous garantissons un environnement sûr et sécurisé, en veillant à la prévention des risques et à la tranquillité d’esprit de nos clients.
 
 `,
-    image: "./public/assets/image/mission/agent.png",
+    image: "./assets/image/mission/agent.png",
   },
   {
 
@@ -94,7 +94,7 @@ L’intervention précoce face aux incendies.`,
     content: `La mission de gardiennage consiste à assurer la surveillance constante des sites, bâtiments et biens confiés afin de prévenir toute intrusion, vol ou acte de vandalisme. Nos gardiens sont formés pour intervenir rapidement en cas d’incident, contrôler les accès et garantir la sécurité des personnes présentes. Leur présence dissuasive permet de maintenir un environnement sûr, tout en assurant un suivi rigoureux des consignes spécifiques à chaque client.
 
 `,
-    image: "./public/assets/image/mission/gardien.png",
+    image: "./assets/image/mission/gardien.png",
   },
   
 ];

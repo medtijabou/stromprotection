@@ -6,7 +6,15 @@
   background-color: #1d1c1c;
   padding: 1rem 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  position: relative;
+ transition: background-color 0.3s ease, box-shadow 0.3s ease;
+   position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.navbar.scrolled {
+  background-color:  rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+
 }
 
 .navbar-logo {
@@ -14,6 +22,16 @@
   height: 50px;
   width: auto;
   border-radius: 10px 2px;
+}
+.navbar-list a,
+.modal-menu a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-list a:visited,
+.modal-menu a:visited {
+  color: white;
 }
 
 .navbar-list {
