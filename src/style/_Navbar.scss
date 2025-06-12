@@ -1,0 +1,150 @@
+/* Styles généraux navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1d1c1c;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.navbar-logo {
+  width: 100px;
+  height: 50px;
+  width: auto;
+  border-radius: 10px 2px;
+}
+
+.navbar-list {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-item {
+  color: #fff;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  position: relative;
+  transition: color 0.3s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: red;
+    transition: width 0.3s ease;
+    transform-origin: left;
+  }
+
+  &.active::after {
+    width: 100%;
+  }
+
+  &.active {
+    color: #ffffff;
+    font-weight: bold;
+  }
+}
+
+/* Bouton hamburger caché desktop */
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Desktop uniquement */
+.navbar-list.desktop {
+  display: flex;
+}
+
+/* Mobile - responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  /* Cacher la nav desktop en mobile */
+  .navbar-list.desktop {
+    display: none;
+  }
+}
+
+/* Overlay plein écran (fond sombre semi-transparent) */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+/* Affiche l'overlay */
+.overlay.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Modal menu qui glisse depuis la gauche */
+/* Modal menu qui glisse depuis la droite */
+.modal-menu {
+  background-color: #1d1c1c;
+  width: 250px;
+  height: 100%;
+  padding: 2rem 1rem;
+  position: fixed;
+  top: 0;
+  right: 0;               /* à droite au lieu de left */
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.5); /* ombre à gauche */
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%); /* commence hors écran à droite */
+  transition: transform 0.3s ease;
+  z-index: 1001;
+}
+
+/* Quand la modal est ouverte */
+.modal-menu.slide-in {
+  transform: translateX(0); /* revient à sa place */
+}
+
+/* Quand la modal se ferme */
+.modal-menu.slide-out {
+  transform: translateX(100%); /* repart vers la droite */
+}
+
+
+/* Liste nav mobile dans la modal */
+.navbar-list.mobile {
+  flex-direction: column;
+  gap: 0;
+  margin-top: 2rem;
+  padding: 0;
+}
+
+.navbar-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid #333;
+}
+
+/* Bouton fermer */
+.close-btn {
+  color: white;
+  font-size: 2rem;
+  align-self: flex-end;
+  cursor: pointer;
+  user-select: none;
+}
