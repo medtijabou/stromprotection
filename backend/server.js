@@ -1,6 +1,10 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+// Charge les variables d'environnement depuis .env
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -9,34 +13,55 @@ app.use(express.json());
 app.post("/send-email", async (req, res) => {
   const { name, email, message } = req.body;
 
+  console.log("Données reçues :", { name, email, message });
+
   if (!name || !email || !message) {
-    return res.status(400).json({ message: "Tous les champs sont requis" });
+    return res.status(400).json({ message: "Tous les champs sont requis." });
   }
 
-  // Configure ton transporter SMTP (exemple avec Gmail)
+  // Config du transporteur SMTP avec variables d'environnement
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true,
     auth: {
-      user: "tijarim7@gmail.com",       // Ton email
-      pass: "pekx ycwn qoce xliq",    // Mot de passe ou token d'application Gmail
+      // eslint-disable-next-line no-undef
+      user: process.env.SMTP_USER,
+      // eslint-disable-next-line no-undef
+      pass: process.env.SMTP_PASS,
     },
   });
 
+  // Vérifie la connexion SMTP
+  transporter.verify(function (error) {
+    if (error) {
+      console.error("Erreur SMTP :", error);
+    } else {
+      console.log("Connexion SMTP OK");
+    }
+  });
+
   const mailOptions = {
-    from: email,
-    to: "tijarim7@gmail.com", // Ton adresse email de réception
+    // eslint-disable-next-line no-undef
+    from: `"Site Contact" <${process.env.SMTP_USER}>`,
+    // eslint-disable-next-line no-undef
+    to: process.env.SMTP_USER,
     subject: `Nouveau message de ${name}`,
-    text: message,
+    text: `Nom : ${name}\nEmail : ${email}\n\nMessage :\n${message}`,
+    replyTo: email,
   };
 
   try {
+    console.log("Envoi mail avec :", mailOptions);
     await transporter.sendMail(mailOptions);
+    console.log("Email envoyé !");
     res.json({ message: "Email envoyé avec succès !" });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Erreur lors de l'envoi de l'email" });
+    console.error("Erreur envoi email :", error);
+    res.status(500).json({ message: "Erreur lors de l'envoi de l'email." });
   }
 });
 
-const PORT = 3001;
+// eslint-disable-next-line no-undef
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Serveur démarré sur le port ${PORT}`));

@@ -9,7 +9,7 @@ Après de nombreuses années d’expérience dans la sécurité privée, cette s
 
 export default function PresentationEntreprise() {
   return (
-    <section id="qui-sommes-nous" style={{ maxWidth: 800, margin: "auto", padding: "2rem", color: "#222" }}>
+    <section id="qui-sommes-nous" style={{ maxWidth: 800, margin: "auto", padding: "2rem", color: "#222" ,}}>
       <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>{presentation.title}</h2>
       <p style={{ whiteSpace: "pre-line", lineHeight: 1.6 }}>{presentation.content}</p>
       {presentation.image && (

@@ -1,7 +1,6 @@
 import React from "react";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from "react-icons/fa";
 
-
 export function Coordinates() {
   return (
     <div className="coordinates-container">
@@ -22,11 +21,18 @@ export function Coordinates() {
             07 80 77 04 19
           </a>
           <br />
-
           <a href="tel:+33614808876" className="coordinates-link">
-           06 14 80 88 76
+            06 14 80 88 76
           </a>
         </p>
+
+        <p>
+          <FaEnvelope className="coordinates-icon" />
+          <a href="mailto:contact@stormprotecion.fr" className="coordinates-link">
+            contact@stormprotection.fr
+          </a>
+        </p>
+
         <p>
           <FaClock className="coordinates-icon" />
           Horaires : Lun - Ven, 9h00 - 18h00

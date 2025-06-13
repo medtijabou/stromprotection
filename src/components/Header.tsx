@@ -19,13 +19,21 @@ const Navbar: React.FC = () => {
 
   const closeMenu = () => setIsOpen(false);
 
-  // ✅ Scroll effect
+  // Effet de scroll pour la navbar
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Revenir à l'accueil après un rechargement avec ancre
+  useEffect(() => {
+    if (window.location.hash) {
+      window.scrollTo(0, 0);
+      history.replaceState(null, "", window.location.pathname);
+    }
   }, []);
 
   return (

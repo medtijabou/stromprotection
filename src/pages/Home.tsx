@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import Navbar from "../components/Header";
 import Banner from "../components/Banner";
 import Missions from "../components/Missions";
@@ -7,9 +8,14 @@ import { Coordinates } from "../components/Coordinates";
 import Footer from "../components/Footer";
 import '../style/index.scss';
 
-function Home(){
-    return(
-        <>
+function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0);  // Scroll en haut au chargement
+  }, []);
+
+  return (
+    <>
+      <div className="home-animate">
         <Navbar />
         <Banner />
         <Missions />
@@ -17,7 +23,9 @@ function Home(){
         <Contact />
         <Coordinates />
         <Footer />
-        </>
-    )
+      </div>
+    </>
+  );
 }
-export default Home
+
+export default Home;
