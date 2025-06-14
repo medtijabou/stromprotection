@@ -1,37 +1,36 @@
-/* Styles généraux navbar */
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #1d1c1c;
   padding: 1rem 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
- transition: background-color 0.3s ease, box-shadow 0.3s ease;
-   position: sticky;
-  top: 0;
-  z-index: 999;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
-.navbar.scrolled {
-  background-color:  rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
 
+.navbar.hidden {
+  transform: translateY(-100%);
 }
+
+.navbar.scrolled {
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+/* ...le reste de ton CSS reste inchangé */
+
 
 .navbar-logo {
-  width: auto;
   height: 75px;
-  
   border-radius: 10px 2px;
 }
-.navbar-list a,
-.modal-menu a {
+
+.navbar-list a {
   color: white;
   text-decoration: none;
-}
-
-.navbar-list a:visited,
-.modal-menu a:visited {
-  color: white;
 }
 
 .navbar-list {
@@ -41,36 +40,19 @@
 }
 
 .navbar-item {
-  color: #fff;
-  cursor: pointer;
   padding: 8px 16px;
-  border-radius: 4px;
+  cursor: pointer;
   position: relative;
-  transition: color 0.3s ease;
-
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 0;
-    background-color: red;
-    transition: width 0.3s ease;
-    transform-origin: left;
-  }
-
-  &.active::after {
-    width: 100%;
-  }
-
-  &.active {
-    color: #ffffff;
-    font-weight: bold;
-  }
+  color: white;
+  font-weight: 500;
 }
 
-/* Bouton hamburger caché desktop */
+.navbar-item.active {
+  font-weight: bold;
+  border-bottom: 2px solid red;
+}
+
+/* Hamburger (mobile) */
 .hamburger {
   display: none;
   font-size: 2rem;
@@ -79,87 +61,65 @@
   user-select: none;
 }
 
-/* Desktop uniquement */
-.navbar-list.desktop {
-  display: flex;
-}
-
-/* Mobile - responsive */
 @media (max-width: 768px) {
   .hamburger {
     display: block;
   }
 
-  /* Cacher la nav desktop en mobile */
   .navbar-list.desktop {
     display: none;
   }
 }
 
-/* Overlay plein écran (fond sombre semi-transparent) */
+/* Overlay */
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  visibility: hidden;
   opacity: 0;
+  visibility: hidden;
   transition: opacity 0.3s ease;
   z-index: 1000;
 }
 
-/* Affiche l'overlay */
 .overlay.open {
-  visibility: visible;
   opacity: 1;
+  visibility: visible;
 }
 
-/* Modal menu qui glisse depuis la gauche */
-/* Modal menu qui glisse depuis la droite */
+/* Modal menu */
 .modal-menu {
-  background-color: #1d1c1c;
-  width: 250px;
-  height: 400px;
-  padding: 2rem 1rem;
   position: fixed;
-  top: 0;
-  right: 0;               /* à droite au lieu de left */
-  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.5); /* ombre à gauche */
-  display: flex;
-  flex-direction: column;
-  transform: translateX(100%); /* commence hors écran à droite */
+  top: 0; right: 0;
+  width: 250px; height: 100vh;
+  background-color: #1d1c1c;
+  padding: 2rem 1rem;
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.5);
+  transform: translateX(100%);
   transition: transform 0.3s ease;
   z-index: 1001;
-  
+  display: flex;
+  flex-direction: column;
 }
 
-/* Quand la modal est ouverte */
 .modal-menu.slide-in {
-  transform: translateX(0); /* revient à sa place */
+  transform: translateX(0);
 }
 
-/* Quand la modal se ferme */
-.modal-menu.slide-out {
-  transform: translateX(100%); /* repart vers la droite */
-}
-
-
-/* Liste nav mobile dans la modal */
 .navbar-list.mobile {
   flex-direction: column;
-  gap: 0;
   margin-top: 2rem;
   padding: 0;
+  list-style: none;
 }
 
 .navbar-item {
-  
   border-bottom: 1px solid #333;
+  padding: 12px 0;
 }
 
-/* Bouton fermer */
+/* Close button */
 .close-btn {
   color: white;
   font-size: 2rem;

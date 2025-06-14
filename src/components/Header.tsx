@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const items = [
   { label: "Accueil", anchor: "accueil" },
@@ -11,54 +11,83 @@ const Navbar: React.FC = () => {
   const [active, setActive] = useState("Accueil");
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+
+  const hideTimeoutRef = useRef<number | null>(null);
+
+  const resetHideTimeout = () => {
+    setHidden(false);
+    if (hideTimeoutRef.current) {
+      window.clearTimeout(hideTimeoutRef.current);
+    }
+    hideTimeoutRef.current = window.setTimeout(() => {
+      setHidden(true);
+    }, 1000);
+  };
+
+  const handleScroll = () => {
+    const isScrolled = window.scrollY > 0;
+    setScrolled(isScrolled);
+
+    // Ne cache la navbar que si on a scrollé
+    if (isScrolled) {
+      resetHideTimeout();
+    } else {
+      // En haut de page, la navbar reste visible
+      setHidden(false);
+      if (hideTimeoutRef.current) {
+        window.clearTimeout(hideTimeoutRef.current);
+      }
+    }
+  };
+
+  const handleMouseMove = () => {
+    if (scrolled) {
+      resetHideTimeout();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (hideTimeoutRef.current) {
+        window.clearTimeout(hideTimeoutRef.current);
+      }
+    };
+  }, [scrolled]);
 
   const handleItemClick = (label: string) => {
     setActive(label);
     setIsOpen(false);
+    setHidden(false); // remet visible après clic
   };
-
-  const closeMenu = () => setIsOpen(false);
-
-  // Effet de scroll pour la navbar
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Revenir à l'accueil après un rechargement avec ancre
-  useEffect(() => {
-    if (window.location.hash) {
-      window.scrollTo(0, 0);
-      history.replaceState(null, "", window.location.pathname);
-    }
-  }, []);
 
   return (
     <>
-      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+      <nav className={`navbar ${scrolled ? "scrolled" : ""} ${hidden ? "hidden" : ""}`}>
         <img
           src="/assets/image/logo/logo-strom.webp"
           alt="Logo Strom Protection"
           className="navbar-logo"
         />
 
-        {/* Nav desktop */}
         <ul className="navbar-list desktop">
           {items.map((item) => (
             <li
               key={item.anchor}
               className={`navbar-item ${active === item.label ? "active" : ""}`}
-              onClick={() => setActive(item.label)}
             >
-              <a href={`#${item.anchor}`}>{item.label}</a>
+              <a href={`#${item.anchor}`} onClick={() => handleItemClick(item.label)}>
+                {item.label}
+              </a>
             </li>
           ))}
         </ul>
 
-        {/* Hamburger mobile */}
         <div
           className="hamburger"
           onClick={() => setIsOpen(!isOpen)}
@@ -73,19 +102,17 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
 
-      {/* Overlay */}
-      <div className={`overlay ${isOpen ? "open" : ""}`} onClick={closeMenu} />
+      <div className={`overlay ${isOpen ? "open" : ""}`} onClick={() => setIsOpen(false)} />
 
-      {/* Modal menu */}
       <div className={`modal-menu ${isOpen ? "slide-in" : ""}`}>
         <div
           className="close-btn"
-          onClick={closeMenu}
+          onClick={() => setIsOpen(false)}
           role="button"
           tabIndex={0}
           aria-label="Fermer le menu"
           onKeyDown={(e) => {
-            if (e.key === "Enter") closeMenu();
+            if (e.key === "Enter") setIsOpen(false);
           }}
         >
           &times;
@@ -95,9 +122,10 @@ const Navbar: React.FC = () => {
             <li
               key={item.anchor}
               className={`navbar-item ${active === item.label ? "active" : ""}`}
-              onClick={() => handleItemClick(item.label)}
             >
-              <a href={`#${item.anchor}`}>{item.label}</a>
+              <a href={`#${item.anchor}`} onClick={() => handleItemClick(item.label)}>
+                {item.label}
+              </a>
             </li>
           ))}
         </ul>
