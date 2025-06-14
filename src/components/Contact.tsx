@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [status, setStatus] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -10,20 +15,23 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setStatus("Envoi en cours...");
 
     try {
-      const response = await fetch("http://localhost:3001/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const result = await emailjs.send(
+        "service_dkgd775",         // ✅ Ton ID de service
+        "template_b954o8r",         // ⛔️ Remplace par TON ID DE TEMPLAT
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        "B5y_VQkmGf4mqMMU7"          // ⛔️ Remplace par TA CLÉ PUBLIQUE
+      );
 
-      if (response.ok) {
-        setStatus("Message envoyé avec succès !");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setStatus("Erreur lors de l'envoi du message.");
-      }
+      console.log(result.text);
+      setStatus("Message envoyé avec succès !");
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error(error);
       setStatus("Erreur lors de l'envoi du message.");
@@ -77,9 +85,6 @@ export default function ContactForm() {
         </button>
       </form>
       {status && <p style={{ marginTop: "1rem", textAlign: "center" }}>{status}</p>}
-      <div style={{ borderTop: "1px solid #ddd", paddingTop: "2rem", textAlign: "center", color: "#555" }}>
-    
-      </div>
     </section>
   );
 }
