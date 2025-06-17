@@ -1,12 +1,27 @@
 import React, { useState, useEffect } from "react";
 
 
-const images = [
-  
-  "/assets/image/slide/agentprivée.webp",
-  "/assets/image/slide/agentfiltrage.webp",
-  "/assets/image/slide/agent-cynophile.webp",
-  "/assets/image/slide/agentincendie.webp"
+const slides = [
+  {
+    image: "/assets/image/slide/agentprivée.webp",
+    title: "Agent de sécurité privée",
+    description: "Surveillance des biens et des personnes en toute discrétion."
+  },
+  {
+    image: "/assets/image/slide/agentfiltrage.webp",
+    title: "Agent de filtrage",
+    description: "Contrôle d’accès et vérification des identités aux entrées."
+  },
+  {
+    image: "/assets/image/slide/agent-cynophile.webp",
+    title: "Agent cynophile",
+    description: "Sécurité renforcée avec l’aide d’un chien dressé."
+  },
+  {
+    image: "/assets/image/slide/agentincendie.webp",
+    title: "Agent de sécurité incendie",
+    description: "Prévention et intervention rapide en cas d'incendie."
+  }
 ];
 
 const Banner = () => {
@@ -14,25 +29,33 @@ const Banner = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
+      setCurrentIndex((prev) => (prev + 1) % slides.length);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
 
+  const currentSlide = slides[currentIndex];
+
   return (
     <div id="accueil" className="banner">
-      {images.map((img, idx) => (
+      {slides.map((slide, idx) => (
         <img
           key={idx}
-          src={img}
-          alt={`Slide ${idx + 1}`}
+          src={slide.image}
+          alt={slide.title}
           className={idx === currentIndex ? "active" : ""}
         />
       ))}
       <div className="banner-content">
-        <h1>STORM PROTECTION</h1>
-        <p>GARDIENNAGE,SECURITE à Marseille et sur toute la région PACA. </p>
-       
+        
+        <div className="slide-center">
+          <h1>STORM PROTECTION</h1>
+          <p>NOTRE MISSION  • VOTRE PROTECTION </p>
+        </div>
+        <div className="slide-left">
+          <h3>{currentSlide.title}</h3>
+          <p>{currentSlide.description}</p>
+        </div>
       </div>
     </div>
   );

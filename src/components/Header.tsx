@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
     <>
       <nav className={`navbar ${scrolled ? "scrolled" : ""} ${hidden ? "hidden" : ""}`}>
         <img
-          src="/assets/image/logo/logo-strom.webp"
+          src="/assets/image/logo/logo-web.jpg"
           alt="Logo Strom Protection"
           className="navbar-logo"
         />
