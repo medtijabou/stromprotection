@@ -1,0 +1,82 @@
+.presentation-section {
+  display: flex;
+
+  padding: 2rem;
+  color: white;
+ background: linear-gradient(to bottom right, #000000, #111827); 
+  align-items: center;
+  gap:2rem;
+}
+
+.presentation-image {
+  width: 400px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 25px 0 25PX;
+  flex-shrink: 0;
+   box-shadow: 0 0 20px #c92836;
+}
+
+.presentation-text {
+display: flex;
+    flex-direction:column;
+    justify-content: center;
+    width: 800px;
+    margin: auto;
+    align-content: stretch;
+    align-items: stretch;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+
+}
+
+.presentation-title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  user-select: none;
+  text-align: center;
+}
+
+.title-red {
+  color: red;
+}
+
+.title-white {
+  color: white;
+}
+
+.presentation-content {
+  font-size: 2rem;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.presentation-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+  width: 270Px;
+}
+
+.presentation-button:hover {
+  background-color: #c92836;
+}
+.motive{
+  padding-top: 15px;
+  font-size: 1.5rem;
+   line-height: 1.8;
+}
+.text-rouge{
+  color: red;
+}
