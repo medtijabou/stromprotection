@@ -1,107 +1,119 @@
-/* Conteneur parent de la modale */
-.nos-services {
-  position: relative; /* Conteneur de référence pour la modale */
-  min-height: 600px;  /* Ajuste selon ta hauteur */
-}
-
 .plaquette {
   background: linear-gradient(to top left, #292424, #0d0b0c);
   padding: 3rem 1rem;
   color: #fff;
   font-family: "Arial", sans-serif;
+}
 
-  &-title {
-    text-align: center;
-    font-size: 2.8rem;
-    margin-bottom: 4rem;
-    color: #e63946;
-    text-transform: uppercase;
-    border-bottom: 2px solid #e63946;
-    padding-bottom: 1rem;
-  }
+.plaquette-title {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 4rem;
+  color: #e63946;
+  text-transform: uppercase;
+  border-bottom: 2px solid #e63946;
+  padding-bottom: 1rem;
+}
 
-  &-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: auto;
-  }
+.plaquette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: auto;
+}
 
-  &-item {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-    cursor: pointer;
-    background: #1a1a1a;
-    transition: transform 0.4s ease;
+.plaquette-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  cursor: pointer;
+  background: #1a1a1a;
+  transition: transform 0.4s ease;
+}
 
-    &.small {
-      grid-column: span 1;
-      grid-row: span 1;
-      height: 240px;
-    }
+.plaquette-item.small {
+  grid-column: span 1;
+  grid-row: span 1;
+  height: 240px;
+}
 
-    &.medium {
-      grid-column: span 2;
-      grid-row: span 2;
-      height: 280px;
-    }
+.plaquette-item.medium {
+  grid-column: span 2;
+  grid-row: span 2;
+  height: 280px;
+}
 
-    &.large {
-      grid-column: span 3;
-      grid-row: span 2;
-      height: 280px;
-    }
+.plaquette-item.large {
+  grid-column: span 3;
+  grid-row: span 2;
+  height: 280px;
+}
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
-      transition: transform 0.5s ease, filter 0.5s ease;
-      display: block;
-      filter: brightness(0.9);
-    }
+.plaquette-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.5s ease, filter 0.5s ease;
+  display: block;
+  filter: brightness(0.9);
+}
 
-    &.translate-right:hover img {
-      transform: translateX(10px) scale(0.95);
-      filter: brightness(0.7);
-    }
+.plaquette-item.translate-right:hover img {
+  transform: translateX(10px) scale(0.95);
+  filter: brightness(0.7);
+}
 
-    &.translate-left:hover img {
-      transform: translateX(-10px) scale(0.95);
-      filter: brightness(0.7);
-    }
+.plaquette-item.translate-left:hover img {
+  transform: translateX(-10px) scale(0.95);
+  filter: brightness(0.7);
+}
 
-    &:hover {
-      transform: scale(1.03);
-    }
+.plaquette-item:hover {
+  transform: scale(1.03);
+}
 
-    .plaquette-title-overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #e63946;
-      font-size: 1.4rem;
-      font-weight: bold;
-      text-align: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 0.3rem 0.7rem;
-      border-radius: 6px;
-      user-select: none;
-    }
+.plaquette-title-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #e63946;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  user-select: none;
 
-    &:hover .plaquette-title-overlay {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
+}
+
+.plaquette-item:hover .plaquette-title-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.white-text {
+  color: #fff;
+}
+
+.red-text {
+  color: #e63946;
+}
+
+.plaquette-text {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 50px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
 }
 
 .plaquette-item.last {
@@ -109,26 +121,28 @@
   height: 280px;
 }
 
-/* Modale : fond noir transparent, centré DANS .nos-services, animation fadeIn */
+/* Modal styles */
 .modal-backdrop {
-  position: absolute; /* Absolue par rapport à .nos-services */
-  inset: 0;           /* Remplit toute la section */
-  bottom: 40rem;
+  position: fixed;
+  inset: 0;
   background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeInModal 0.3s ease forwards;
+  padding: 1rem; /* IMPORTANT pour éviter que la modal colle aux bords */
   z-index: 1000;
+  overflow-y: auto; /* Pour gérer le scroll si modal trop haute */
 }
 
 .modal-content {
-  background: #1a1a1a;
+  background-color: #1a1a1a; /* Fond visible pour la modal */
   color: #fff;
   padding: 2rem;
   border-radius: 12px;
   max-width: 500px;
-  width: 90%;
+  width: 100%;
+  max-height: calc(100vh - 2rem); /* Hauteur max = hauteur écran moins padding */
+  overflow-y: auto; /* Scroller à l’intérieur si contenu trop grand */
   box-shadow: 0 4px 25px rgba(230, 57, 70, 0.7);
   position: relative;
   animation: slideUpModal 0.3s ease forwards;
@@ -149,8 +163,11 @@
 .modal-close:hover {
   color: #fff;
 }
+.modal-title{
+  margin-bottom: 12px;
+}
 
-/* Animations modale */
+/* Animations modal */
 @keyframes fadeInModal {
   from {
     background: rgba(0, 0, 0, 0);
