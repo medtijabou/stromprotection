@@ -3,14 +3,16 @@
 
   padding: 2rem;
   color: white;
- background: linear-gradient(to bottom right, #000000, #111827); 
+ background: radial-gradient(circle, #111827 -20rem, #000000 100%);
+
   align-items: center;
   gap:2rem;
 }
 
 .presentation-image {
-  width: 400px;
+  width: 500px;
   height: auto;
+  margin-left: 4rem;
   object-fit: cover;
   border-radius: 25px 0 25PX;
   flex-shrink: 0;
@@ -22,8 +24,8 @@
 display: flex;
     flex-direction:column;
     justify-content: center;
-    width: 800px;
-    margin: auto;
+    width: 68rem;
+    margin: 20px auto 0 28%;
     align-content: stretch;
     align-items: stretch;
     font-family: "Roboto", sans-serif;
@@ -38,16 +40,30 @@ display: flex;
   margin-bottom: 1.5rem;
   font-weight: bold;
   user-select: none;
-  text-align: center;
    animation: slideInTop 1s ease-out forwards;
+
+}
+.title-red {
+  position: relative;
+  display: inline-block;
+  color: white;
 }
 
-.title-red {
-  color: red;
+.title-red::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -15px; /* espace entre texte et bordure */
+  width: 70%; /* ici tu choisis la largeur */
+  height: 10px; /* épaisseur de la bordure */
+  background-color:#ff0000;
 }
+
 
 .title-white {
-  color: white;
+  margin-left: 18px;
+  color: #ff0000;
+
 }
 
 .presentation-content {
@@ -65,7 +81,7 @@ display: flex;
   padding: 0.8rem 1.6rem;
   font-size: 1rem;
   font-weight: bold;
-  background-color: red;
+  background-color:#c92836;
   color: white;
   text-decoration: none;
   border-radius: 25px;
@@ -82,8 +98,10 @@ display: flex;
    line-height: 1.8;
 }
 .text-rouge{
-  color: red;
-}.en-savoir-plus-button {
+  color:#ff0000;
+  font-weight: 500;
+}
+.en-savoir-plus-button {
   margin-top: 1.5rem;
   background-color: #c92836;
   color: white;

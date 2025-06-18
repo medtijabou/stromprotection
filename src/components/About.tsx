@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const presentation = {
-  title: "NOTR HISTOIR",
+  title: "NOTRE HISTOIR",
   content: `STORM PROTECTION est une société de sécurité privée créée par Monsieur AYNAOU AZIZ, diplômé du Centre de Formation MASTER INSTITUE (DIRIGEANT D’ENTREPRISE DE SÉCURITÉ PRIVÉE).
 Après de nombreuses années d’expérience dans la sécurité privée, cette société assure la protection des biens et des personnes dans tous types de missions.`,
   image: "/public/assets/image/logo/logo-web.jpg",
@@ -10,7 +10,7 @@ Après de nombreuses années d’expérience dans la sécurité privée, cette s
 export default function PresentationEntreprise() {
   const [showMore, setShowMore] = useState(false);
 
-  const titleMiddle = Math.floor(presentation.title.length / 3);
+  const titleMiddle = Math.floor(presentation.title.length / 2);
   const titlePart1 = presentation.title.slice(0, titleMiddle);
   const titlePart2 = presentation.title.slice(titleMiddle);
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 
+
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -20,13 +21,13 @@ export default function ContactForm() {
     try {
       const result = await emailjs.send(
         "service_dkgd775",         // ✅ Ton ID de service
-        "template_b954o8r",         // ⛔️ Remplace par TON ID DE TEMPLAT
+        "template_b954o8r",        // ✅ Ton ID de template
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
         },
-        "B5y_VQkmGf4mqMMU7"          // ⛔️ Remplace par TA CLÉ PUBLIQUE
+        "B5y_VQkmGf4mqMMU7"        // ✅ Ta clé publique
       );
 
       console.log(result.text);
@@ -39,9 +40,9 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" style={{ maxWidth: 600, margin: "auto", padding: "2rem" }}>
-      <h2 style={{ textAlign: "center", marginBottom: "1.5rem" }}>Contactez-nous</h2>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <section id="contact" className="contact-section">
+      <h2>Contactez-nous</h2>
+      <form onSubmit={handleSubmit} className="contact-form">
         <input
           type="text"
           name="name"
@@ -49,7 +50,6 @@ export default function ContactForm() {
           value={formData.name}
           onChange={handleChange}
           required
-          style={{ padding: "0.5rem", fontSize: "1rem" }}
         />
         <input
           type="email"
@@ -58,7 +58,6 @@ export default function ContactForm() {
           value={formData.email}
           onChange={handleChange}
           required
-          style={{ padding: "0.5rem", fontSize: "1rem" }}
         />
         <textarea
           name="message"
@@ -67,24 +66,10 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           rows={5}
-          style={{ padding: "0.5rem", fontSize: "1rem", resize: "vertical" }}
         />
-        <button
-          type="submit"
-          style={{
-            padding: "0.7rem",
-            fontSize: "1.1rem",
-            backgroundColor: "#e63946",
-            color: "white",
-            border: "none",
-            borderRadius: 5,
-            cursor: "pointer",
-          }}
-        >
-          Envoyer
-        </button>
+        <button type="submit">Envoyer</button>
       </form>
-      {status && <p style={{ marginTop: "1rem", textAlign: "center" }}>{status}</p>}
+      {status && <p className="status-message">{status}</p>}
     </section>
   );
 }

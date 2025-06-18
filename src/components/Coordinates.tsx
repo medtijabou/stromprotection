@@ -4,9 +4,12 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from "react-icons/fa"
 export function Coordinates() {
   return (
     <div className="coordinates-container">
-      <h3>Nos coordonnées</h3>
+      <div className="title-container">
+      <h3><span className="title-blanco">STORM </span>PROTECTION</h3>
+<p>Notre mission, votre protection. Services de sécurité professionnels pour tous vos événements.</p></div>
+
       <address className="coordinates-address">
-        <p>
+        <p className="ubication">
           <FaMapMarkerAlt className="coordinates-icon" />
           <span>
             <strong>SASU AU CAPITAL DE 3000 EUROS</strong><br />
