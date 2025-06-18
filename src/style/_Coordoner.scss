@@ -1,52 +1,88 @@
 .coordinates-container {
- 
-  padding-top: 2rem;
-  
-  color:#ddd;
- background: black;
+  padding: 2rem;
+  color: #ddd;
+  background: black;
   margin: auto;
-  
+  display: flex;
+  justify-content: center;
 }
-.title-container{
-margin-left: 20px;
-width: 500px;
+
+.coordinates-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1000px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.title-container {
+  width: 45%;
+  margin-top: 75px;
+}
+
+.title-container p {
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
 }
 
 .coordinates-container h3 {
   margin-bottom: 1rem;
   font-size: 3rem;
-  
 }
-.title-blanco{
- color: #ff0000;
+
+.title-blanco {
+  color: #ff0000;
   text-shadow: 0 0 5px #ff0000, 0 0 1px #ff0000;
   font-weight: bold;
+  
+}
+
+.separator-vertical {
+  width: 4px;
+  background: linear-gradient(to bottom, #ff0000, #000000);
+  border-radius: 2px;
+  min-height: 250px;
   animation: flash 1s infinite alternate;
 }
 
 .coordinates-address {
+  width: 45%;
   font-style: normal;
   line-height: 1.6;
   margin-top: 1rem;
 }
 
 .coordinates-address p {
-padding-bottom: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+ display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 25px;
+    justify-content: center;
+    flex-direction: row;
+  font-size: 20px;
 }
 
 .coordinates-icon {
-   
-  color: #e63946;
-  min-width: 20px;
+  color: #ff0000;
+
 }
-.ubication{
+
+.ubication {
   display: flex;
   flex-direction: column;
+}
+.mobile-icon{
+margin-left: -70px;
+}
+.email-icon{
+  margin-left: -75px;
 
+}
+.time-icon{
+  margin-left: -20px;
 }
 .coordinates-link {
   color: #e63946;
@@ -55,4 +91,72 @@ padding-bottom: 5px;
 
 .coordinates-link:hover {
   text-decoration: underline;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+/* Responsive pour .coordinates-container et contenu */
+
+@media (max-width: 1024px) {
+  .coordinates-container{
+    flex-direction: column;
+  }
+  .coordinates-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .title-container,
+  .coordinates-address {
+    width: 90%;
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .separator-vertical {
+    display: none; /* on cache la séparation verticale sur tablettes */
+  }
+
+  .coordinates-address p {
+    justify-content: center;
+    font-size: 18px;
+    padding-bottom: 20px;
+  }
+
+  /* Ajustement marges des icônes */
+  .mobile-icon,
+  .email-icon,
+  .time-icon {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .coordinates-container {
+    padding: 1rem;
+  }
+
+  .coordinates-container h3 {
+    font-size: 2rem;
+  }
+
+  .title-container p {
+    font-size: 16px;
+  }
+
+  .coordinates-address p {
+    font-size: 16px;
+    padding-bottom: 15px;
+    gap: 0.3rem;
+    display: flex;
+
+    flex-direction: column;
+  }
 }

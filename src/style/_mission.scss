@@ -1,195 +1,290 @@
+/* SECTION PRINCIPALE */
 .plaquette {
- background: linear-gradient(to top right, #000000, #111827);
+  background: linear-gradient(to top right, #000000, #111827);
   padding: 3rem 1rem;
   color: #fff;
   font-family: "Arial", sans-serif;
 }
 
+/* TITRE PRINCIPAL */
 .plaquette-title {
-  
   font-size: 2.8rem;
-    
-    color: #e63946;
-    text-transform: uppercase;
-    width: 200px;
-    margin: auto;
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    border-bottom: 8px solid #e63946;
-    padding-bottom: 1rem;
+  color: red;
+  text-transform: uppercase;
+  width: 70%;
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  position: relative;
 }
 
+/* SOULIGNÉ EN ROUGE */
+.white-text {
+  color: white;
+  border-bottom: 8px solid red;
+  padding-bottom: 0.5rem;
+}
+
+/* PARAGRAPHE INTRO */
+.plaquette-text {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #e0e0e0;
+}
+
+/* GRILLE DES CARTES */
 .plaquette-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
+  grid-template-rows: repeat(2, 1fr);    /* 2 lignes */
   gap: 1.5rem;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.plaquette-item {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  margin: 20px;
+  height: 1000px; /* tu peux ajuster selon la hauteur souhaitée */
   cursor: pointer;
-  background: #1a1a1a;
-  transition: transform 0.4s ease;
 }
 
-.plaquette-item.small {
-  grid-column: span 1;
-  grid-row: span 1;
-  height: 240px;
+/* CARTE AVEC PERSPECTIVE */
+.plaquette-card {
+  perspective: 1000px;
+  height: 500px;
+  border: 1px solid #a3001e;
+  border-radius: 25px;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  overflow: hidden;
 }
 
-.plaquette-item.medium {
-  grid-column: span 2;
-  grid-row: span 2;
-  height: 280px;
+/* EFFET DE HOVER */
+.plaquette-card:hover {
+  transform: scale(1.03);
+  filter: brightness(1) contrast(1.1) sepia(3%);
 }
 
-.plaquette-item.large {
-  grid-column: span 3;
-  grid-row: span 2;
-  height: 280px;
-}
-
-.plaquette-item img {
+/* INTÉRIEUR DE LA CARTE POUR FLIP */
+.card-inner {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-  transition: transform 0.5s ease, filter 0.5s ease;
-  display: block;
-  filter: brightness(0.9);
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
 
-.plaquette-item.translate-right:hover img {
-  transform: translateX(10px) scale(0.95);
-  filter: brightness(0.7);
+/* FLIP AU CLIQUE */
+.plaquette-card.flipped .card-inner {
+  transform: rotateY(180deg);
 }
 
-.plaquette-item.translate-left:hover img {
-  transform: translateX(-10px) scale(0.95);
-  filter: brightness(0.7);
-}
-
-.plaquette-item:hover {
-  transform: scale(1.03);
-}
-
-.plaquette-title-overlay {
+/* FACES DE LA CARTE */
+.card-front,
+.card-back {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #e63946;
-  font-size: 1.4rem;
-  font-weight: bold;
-  text-align: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 0.3rem 0.7rem;
-  border-radius: 6px;
-  user-select: none;
-
-}
-
-.plaquette-item:hover .plaquette-title-overlay {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.white-text {
-  color: #fff;
-}
-
-.red-text {
-  color: #e63946;
-}
-
-.plaquette-text {
-  display: flex;
-  justify-content: center;
-  font-size: 1.5rem;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 100;
-}
-
-.plaquette-item.last {
-  width: 330px;
-  height: 280px;
-}
-
-/* Modal styles */
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem; /* IMPORTANT pour éviter que la modal colle aux bords */
-  z-index: 1000;
-  overflow-y: auto; /* Pour gérer le scroll si modal trop haute */
-}
-
-.modal-content {
-  background-color: #1a1a1a; /* Fond visible pour la modal */
-  color: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 500px;
   width: 100%;
-  max-height: calc(100vh - 2rem); /* Hauteur max = hauteur écran moins padding */
-  overflow-y: auto; /* Scroller à l’intérieur si contenu trop grand */
-  box-shadow: 0 4px 25px rgba(230, 57, 70, 0.7);
-  position: relative;
-  animation: slideUpModal 0.3s ease forwards;
+  height: 100%;
+  border-radius: 25px 25px 0 0;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(to top right, #000000, #111827);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.modal-close {
+/* FACE AVANT */
+.card-front {
+  transform: rotateY(0deg);
+}
+
+/* FACE ARRIÈRE */
+.card-back {
+  transform: rotateY(180deg);
+  padding: 1rem;
+}
+
+/* IMAGE */
+.card-front img {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+  filter: brightness(0.5) contrast(1.1) sepia(10%);
+}
+
+/* TEXTE SUPPLÉMENTAIRE SOUS IMAGE */
+.plus-info {
+  height: 20%;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  color: white;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+.plus-info h4{
+  font-size: 24px;
+}
+.plus-info p {
+  color: #FF0000;
+  font-size: 18px;
+  font-weight: 700;
+  position: relative; /* pour positionner le ::before */
+  padding-left: 25px; /* espace à gauche pour le cercle */
+}
+
+.plus-info p::before {
+  content: "";
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: transparent;
-  border: none;
-  font-size: 2rem;
-  color: #e63946;
-  cursor: pointer;
-  transition: color 0.3s ease;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;   /* taille du cercle */
+  height: 12px;
+  border-radius: 50%;
+  background-color: red;
+  animation: clignote 1.5s infinite alternate;
 }
 
-.modal-close:hover {
-  color: #fff;
-}
-.modal-title{
-  margin-bottom: 12px;
-}
-
-/* Animations modal */
-@keyframes fadeInModal {
-  from {
-    background: rgba(0, 0, 0, 0);
-  }
-  to {
-    background: rgba(0, 0, 0, 0.7);
-  }
-}
-
-@keyframes slideUpModal {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
+@keyframes clignote {
+  0% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.2;
+    transform: translateY(-50%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+
+/* EN-TÊTE SUR L'IMAGE */
+.card-header {
+  position: absolute;
+  bottom:120px;
+  left: 10px;
+  font-size: 1.9rem;
+  font-weight: 900;
+  z-index: 2;
+  color: #fff;
+  padding-bottom: 0.3rem;
+}
+
+.card-header::after {
+  content: '';
+  display: block;
+  width: 30%;
+  height: 4px;
+  background-color: #FF0000;
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* CONTENU DOS */
+.card-back .card-content {
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.card-back h2 {
+  color: #e63946;
+  margin-bottom: 0.5rem;
+}
+/* ------------------- */
+/* Responsive général */
+/* ------------------- */
+
+/* Par défaut tu as 3 colonnes sur desktop, on laisse ça */
+
+/* Tablettes (entre 600px et 1024px) */
+@media (max-width: 1024px) {
+  .plaquette-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+    grid-template-rows: auto;
+    height: auto; /* hauteur auto pour éviter trop grand */
+    margin: 1rem;
+  }
+
+  .plaquette-card {
+    height: 400px; /* un peu moins haut */
+  }
+
+  .plaquette-title {
+    font-size: 2.2rem;
+    width: 90%;
+  }
+
+  .plaquette-text {
+    font-size: 1.1rem;
+    margin: 1rem 1rem 2rem;
+  }
+  .card-header{
+    font-size: 1rem;
+  }
+  .plus-info h4{
+    font-size: 14px;
+  }
+  .plus-info p{
+    font-size: 12px;
+  }
+}
+
+/* Mobiles (max 600px) */
+@media (max-width: 600px) {
+  .plaquette-grid {
+    grid-template-columns: 1fr; /* 1 colonne */
+    grid-template-rows: auto;
+    gap: 1rem;
+    margin: 0.5rem;
+    height: auto;
+  }
+
+  .plaquette-card {
+    height: 300px; /* plus petit pour mobile */
+  }
+
+  .plaquette-title {
+    font-size: 1.8rem;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .plaquette-text {
+    font-size: 1rem;
+    margin: 1rem 0.5rem 1.5rem;
+    padding: 0 1rem;
+  }
+
+  /* Ajuster la taille des images dans les cartes */
+  .card-front img {
+    height: 70%;
+  }
+
+  .plus-info {
+    font-size: 1rem;
+    gap: 10px;
+    padding: 0.3rem;
+  }
+
+  .plus-info h4 {
+    font-size: 20px;
+  }
+
+  .plus-info p {
+    font-size: 16px;
+  }
+
+  /* Ajustement du header sur image */
+  .card-header {
+    bottom: 100px;
+    font-size: 1.4rem;
+    left: 8px;
   }
 }

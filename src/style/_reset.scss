@@ -15,3 +15,15 @@ html {
   overflow-x: hidden;
   
 }
+/* Pour Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 12px;              /* largeur de la barre de défilement */
+}
+
+
+
+::-webkit-scrollbar-thumb {
+  background-color: red;    /* couleur de la barre de défilement */
+  border-radius: 10px;      /* arrondir les bords */
+  border: 3px solid #f1f1f1; /* bordure pour délimiter */
+}

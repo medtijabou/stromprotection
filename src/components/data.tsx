@@ -1,22 +1,7 @@
 // components/data.ts
 
 export const sections = [
-  {
-    title: "Agent de Sécurité",
-    content: `L’agent de sécurité assure les services de
-sécurité et gardiennage la protection des biens
-et des personnes ainsi que le bon
-fonctionnement d’un site (entreprise, stade,
-usine, immeuble...). Ses missions sont :Accueil
-et information Surveillance générale du site
-Sécurité technique de base Secours et
-assistance aux personnes Protection et alerte
-en cas d’accident ou événement exceptionnel
-Ses interventions s’effectuent dans le respect
-des dispositions législatives et réglementaires
-applicables à l’activité de sécurité privée`,
-    image: "https://images.unsplash.com/photo-1652739758426-56a564265f9e?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
+ 
   {
     title: "Agent de Sécurité Filtrage",
     content: `L’agent de sûreté a pour mission de limiter l’accès à une
