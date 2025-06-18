@@ -25,5 +25,7 @@ Le backend est assuré uniquement pour la gestion des emails via **EmailJS**, ce
 1. Cloner le dépôt :
 
 ```bash
-git clone <URL_DU_DEPOT>
-cd <NOM_DU_PROJET>
+git clone https://github.com/medtijabou/stromprotection.git
+cd storm
+npm install
+npm run dev
