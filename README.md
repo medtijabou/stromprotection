@@ -1,12 +1,31 @@
-# React + Vite
+# StormProtection.fr
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site web professionnel développé avec **React** et **Vite**, hébergé chez **Hostinger** sous le domaine [https://stormprotection.fr/](https://stormprotection.fr/).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Description
 
-## Expanding the ESLint configuration
+StormProtection.fr est une application web moderne offrant une expérience utilisateur fluide grâce à Vite et React avec Hot Module Replacement (HMR).  
+Le backend est assuré uniquement pour la gestion des emails via **EmailJS**, ce qui permet un service stable sans serveur dédié.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📦 Technologies utilisées
+
+- **React** avec **Vite** pour le frontend
+- Plugin officiel React pour Vite (`@vitejs/plugin-react` ou `@vitejs/plugin-react-swc`)
+- **EmailJS** pour l'envoi d'emails côté client (sans backend custom)
+- Hébergement sur **Hostinger**
+
+---
+
+## ⚙️ Installation locale
+
+1. Cloner le dépôt :
+
+```bash
+git clone https://github.com/medtijabou/stromprotection.git
+cd storm
+npm install
+npm run dev
