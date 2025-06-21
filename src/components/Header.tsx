@@ -12,7 +12,6 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
-
   const hideTimeoutRef = useRef<number | null>(null);
 
   const resetHideTimeout = () => {
@@ -29,11 +28,9 @@ const Navbar: React.FC = () => {
     const isScrolled = window.scrollY > 0;
     setScrolled(isScrolled);
 
-    // Ne cache la navbar que si on a scrollé
     if (isScrolled) {
       resetHideTimeout();
     } else {
-      // En haut de page, la navbar reste visible
       setHidden(false);
       if (hideTimeoutRef.current) {
         window.clearTimeout(hideTimeoutRef.current);
@@ -50,7 +47,6 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("mousemove", handleMouseMove);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
@@ -60,10 +56,18 @@ const Navbar: React.FC = () => {
     };
   }, [scrolled]);
 
-  const handleItemClick = (label: string) => {
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleItemClick = (label: string, anchor: string) => {
     setActive(label);
+    scrollToSection(anchor);
     setIsOpen(false);
-    setHidden(false); // remet visible après clic
+    setHidden(false);
   };
 
   return (
@@ -80,10 +84,9 @@ const Navbar: React.FC = () => {
             <li
               key={item.anchor}
               className={`navbar-item ${active === item.label ? "active" : ""}`}
+              onClick={() => handleItemClick(item.label, item.anchor)}
             >
-              <a href={`#${item.anchor}`} onClick={() => handleItemClick(item.label)}>
-                {item.label}
-              </a>
+              <span>{item.label}</span>
             </li>
           ))}
         </ul>
@@ -122,10 +125,9 @@ const Navbar: React.FC = () => {
             <li
               key={item.anchor}
               className={`navbar-item ${active === item.label ? "active" : ""}`}
+              onClick={() => handleItemClick(item.label, item.anchor)}
             >
-              <a href={`#${item.anchor}`} onClick={() => handleItemClick(item.label)}>
-                {item.label}
-              </a>
+              <span>{item.label}</span>
             </li>
           ))}
         </ul>
